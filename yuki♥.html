@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Yuki</title>
+
+<style>
+
+body{
+margin:0;
+overflow:hidden;
+background:#ffd6e7;
+font-family:Arial, sans-serif;
+display:flex;
+align-items:center;
+justify-content:center;
+height:100vh;
+}
+
+/* gift */
+
+#gift{
+font-size:120px;
+position:absolute;
+transition:opacity 1s;
+}
+
+/* rose */
+
+#rose{
+position:absolute;
+font-size:140px;
+opacity:0;
+transform:scale(.2);
+transition:all 1.2s ease;
+left:50%;
+top:40%;
+}
+
+/* main text */
+
+#text{
+position:absolute;
+width:80%;
+text-align:center;
+font-size:28px;
+opacity:0;
+transition:opacity .4s;
+}
+
+/* floating love texts */
+
+.love{
+position:absolute;
+color:#ffffff;
+font-size:22px;
+opacity:0;
+animation:float 8s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(50px) rotate(-10deg);opacity:0}
+40%{opacity:1}
+100%{transform:translateY(-80px) rotate(10deg);opacity:0}
+}
+
+/* final */
+
+#final{
+position:absolute;
+background:#556b2f;
+color:#fff3d0;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:36px;
+text-align:center;
+opacity:0;
+transition:opacity 1s;
+}
+
+/* end */
+
+#end{
+position:absolute;
+background:black;
+color:white;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+opacity:0;
+transition:opacity 1s;
+}
+
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div id="gift">🎁</div>
+<div id="rose">🌹</div>
+<div id="text"></div>
+
+<div id="final">
+i jus wanna be your and want you to be jus mine
+</div>
+
+<div id="end">
+your loving kazo
+</div>
+
+<script>
+
+let rose=document.getElementById("rose")
+let text=document.getElementById("text")
+
+window.onload=startAnimation
+
+async function startAnimation(){
+
+await sleep(1500)
+
+document.getElementById("gift").style.opacity=0
+
+await sleep(800)
+
+/* rose bloom */
+
+rose.style.opacity=1
+rose.style.transform="scale(1.3)"
+
+await sleep(1500)
+
+/* move left */
+
+rose.style.left="0.1%"
+
+await lines([
+"even though we meet a few weeks before",
+"but this small time gap feels like years to me",
+"i imagined whole life with you",
+"how will we gonna be in upcoming years"
+])
+
+/* move right */
+
+rose.style.left="80%"
+
+await lines([
+"all i wanted you to know",
+"i like you so much",
+"and a bit of love",
+"but everything starts with zero",
+"be with me forever"
+])
+
+text.style.opacity=0
+
+spawnTexts()
+
+await sleep(12000)
+
+/* final */
+
+document.getElementById("final").style.opacity=1
+
+await sleep(5000)
+
+document.getElementById("final").style.opacity=0
+
+document.getElementById("end").style.opacity=1
+
+}
+
+async function lines(arr){
+
+for(let i of arr){
+
+text.innerText=i
+text.style.opacity=1
+
+await sleep(3200)
+
+text.style.opacity=0
+
+await sleep(400)
+
+}
+
+}
+
+/* romantic text rain */
+
+function spawnTexts(){
+
+let phrases=[
+"you are my favorite person",
+"every moment with you matters",
+"i feel lucky to know you",
+"you make everything brighter",
+"being with you feels right",
+"you mean more than words",
+"my world feels softer with you",
+"you are special to me",
+"i smile because of you",
+"your presence feels like home",
+"i adore your existence",
+"you are my calm place",
+"my heart feels safe with you",
+"life feels beautiful with you",
+"you are unforgettable",
+"i cherish every thought of you",
+"you light up my days",
+"my favorite feeling is you",
+"you are my peaceful place",
+"my heart chose you",
+"love you so much yuki",
+"be with me forever please"
+]
+
+for(let i=0;i<phrases.length;i++){
+
+let t=document.createElement("div")
+t.className="love"
+t.innerText=phrases[i]
+
+t.style.left=Math.random()*100+"%"
+t.style.top=Math.random()*100+"%"
+t.style.transform="rotate("+(Math.random()*40-20)+"deg)"
+
+document.body.appendChild(t)
+
+setTimeout(()=>{t.style.opacity=1},60)
+
+}
+
+}
+
+function sleep(ms){
+return new Promise(r=>setTimeout(r,ms))
+}
+
+</script>
+
+</body>
+</html>
+  
