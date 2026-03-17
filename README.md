@@ -1,1 +1,233 @@
-# yuki
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Yuki</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+overflow:hidden;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:url("https://images.unsplash.com/photo-1518199266791-5375a83190b7") center/cover no-repeat;
+font-family:'Poppins',sans-serif;
+}
+
+/* dark overlay */
+
+body::after{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.3);
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* title */
+
+#title{
+font-family:'Great Vibes',cursive;
+font-size:65px;
+color:white;
+animation:fade 3s;
+}
+
+/* envelope */
+
+#envelope{
+position:absolute;
+bottom:90px;
+font-size:85px;
+cursor:pointer;
+animation:float 2s infinite ease-in-out;
+}
+
+/* letter */
+
+#letter{
+position:absolute;
+width:85%;
+max-width:420px;
+background:white;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,0.4);
+opacity:0;
+transform:scale(0.4);
+transition:1s;
+}
+
+#letter h2{
+font-family:'Great Vibes',cursive;
+font-size:42px;
+color:#ff4d88;
+}
+
+/* hearts */
+
+.heart{
+position:absolute;
+color:white;
+font-size:25px;
+}
+
+/* petals */
+
+.petal{
+position:absolute;
+color:#ff9ec4;
+font-size:20px;
+}
+
+/* animations */
+
+@keyframes fade{
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+100%{transform:translateY(0)}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1 id="title">For Yuki ❤️</h1>
+
+<div id="envelope">💌</div>
+
+<div id="letter">
+<h2>I Love You Yuki</h2>
+<p>
+You make my life brighter.  
+Being with you feels special.  
+Stay with me forever. ❤️
+</p>
+</div>
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8d9f.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+let env=document.getElementById("envelope")
+let letter=document.getElementById("letter")
+let music=document.getElementById("music")
+
+env.onclick=()=>{
+
+music.play()
+
+env.style.opacity=0
+letter.style.opacity=1
+letter.style.transform="scale(1)"
+
+loveRain()
+
+}
+
+/* hearts */
+
+setInterval(()=>{
+
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="❤"
+
+heart.style.left=Math.random()*100+"%"
+heart.style.top="100%"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>{
+heart.style.top="-10%"
+heart.style.transition="4s linear"
+},100)
+
+setTimeout(()=>{
+heart.remove()
+},4000)
+
+},500)
+
+/* petals */
+
+setInterval(()=>{
+
+let p=document.createElement("div")
+p.className="petal"
+p.innerHTML="🌸"
+
+p.style.left=Math.random()*100+"%"
+p.style.top="-10%"
+
+document.body.appendChild(p)
+
+setTimeout(()=>{
+p.style.top="110%"
+p.style.transition="6s linear"
+},100)
+
+setTimeout(()=>{
+p.remove()
+},6000)
+
+},700)
+
+/* love text rain */
+
+function loveRain(){
+
+let phrases=[
+"I love you Yuki",
+"You are special",
+"You make me smile",
+"My heart is yours",
+"I miss you",
+"Forever us",
+"You are amazing",
+"Stay with me"
+]
+
+for(let i=0;i<phrases.length;i++){
+
+let t=document.createElement("div")
+
+t.innerText=phrases[i]
+t.style.position="absolute"
+t.style.color="white"
+t.style.fontSize="22px"
+t.style.left=Math.random()*100+"%"
+t.style.top=Math.random()*100+"%"
+t.style.transform="rotate("+(Math.random()*40-20)+"deg)"
+t.style.opacity=0
+t.style.transition="2s"
+
+document.body.appendChild(t)
+
+setTimeout(()=>{t.style.opacity=1},400)
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
